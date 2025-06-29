@@ -1,0 +1,9 @@
+{
+	"name": "myDataFactory1981234",
+	"location": "West US",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "1a0cb208-14e9-4139-bf7b-f528d65b1e8f",
+		"tenantId": "84f1e4ea-8554-43e1-8709-f0b8589ea118"
+	}
+}
