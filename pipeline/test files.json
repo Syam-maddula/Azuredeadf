@@ -24,6 +24,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureFileStorageReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -72,10 +73,31 @@
 								],
 								"storeSettings": {
 									"type": "AzureFileStorageReadSettings",
+									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
 									"type": "DelimitedTextReadSettings"
+								}
+							}
+						},
+						{
+							"name": "Append variable1",
+							"type": "AppendVariable",
+							"dependsOn": [
+								{
+									"activity": "Get Metadata2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "filename",
+								"value": {
+									"value": "contains(activity('Get Metadata1').output.childItems[item()].name,\"json\")",
+									"type": "Expression"
 								}
 							}
 						}
@@ -83,6 +105,11 @@
 				}
 			}
 		],
+		"variables": {
+			"filename": {
+				"type": "Array"
+			}
+		},
 		"annotations": []
 	}
 }
