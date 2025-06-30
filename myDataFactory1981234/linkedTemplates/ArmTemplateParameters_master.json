@@ -1,0 +1,50 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "myDataFactory1981234"
+		},
+		"AzureBlobStorage_connectionString": {
+			"value": ""
+		},
+		"AzureFileStorage_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase_properties_typeProperties_server": {
+			"value": "mysqlserver1981234.database.windows.net"
+		},
+		"AzureSqlDatabase_properties_typeProperties_database": {
+			"value": "myDatabase1981234"
+		},
+		"AzureSqlDatabase_properties_typeProperties_userName": {
+			"value": "sysadmin"
+		},
+		"sqlMPE_properties_privateLinkResourceId": {
+			"value": "/subscriptions/9734ed68-621d-47ed-babd-269110dbacb1/resourceGroups/1-f77c8268-playground-sandbox/providers/Microsoft.Sql/servers/mySqlServer1981234"
+		},
+		"sqlMPE_properties_groupId": {
+			"value": "sqlServer"
+		},
+		"storageMPE_properties_privateLinkResourceId": {
+			"value": "/subscriptions/9734ed68-621d-47ed-babd-269110dbacb1/resourceGroups/1-f77c8268-playground-sandbox/providers/Microsoft.Storage/storageAccounts/mystorageacct1981234"
+		},
+		"storageMPE_properties_groupId": {
+			"value": "blob"
+		},
+		"storageMPE_properties_fqdns": {
+			"value": [
+				"mystorageacct1981234.blob.core.windows.net"
+			]
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
