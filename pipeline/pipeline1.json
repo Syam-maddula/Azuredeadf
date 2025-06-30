@@ -83,6 +83,43 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "order_ID"
+								},
+								"sink": {
+									"name": "Order_ID"
+								}
+							},
+							{
+								"source": {
+									"name": "customer",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Customer"
+								}
+							},
+							{
+								"source": {
+									"name": "amount",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "Amount"
+								}
+							},
+							{
+								"source": {
+									"name": "order_date",
+									"type": "Date"
+								},
+								"sink": {
+									"name": "Order_Date"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
