@@ -310,7 +310,7 @@
 				"typeProperties": {
 					"scripts": [
 						{
-							"type": "Query",
+							"type": "NonQuery",
 							"text": "IF EXISTS (SELECT 1 FROM [dbo].[Orders]\r\nBEGIN\r\n    DELETE FROM [dbo].[Orders];\r\n    PRINT 'Orders table data has been cleared.';\r\nEND\r\nELSE\r\nBEGIN\r\n    PRINT 'No data found in Orders table.';\r\nEND"
 						}
 					],
