@@ -311,7 +311,7 @@
 					"scripts": [
 						{
 							"type": "NonQuery",
-							"text": "IF EXISTS (SELECT 1 FROM [dbo].[Orders]\r\nBEGIN\r\n    DELETE FROM [dbo].[Orders];\r\n    PRINT 'Orders table data has been cleared.';\r\nEND\r\nELSE\r\nBEGIN\r\n    PRINT 'No data found in Orders table.';\r\nEND"
+							"text": "IF EXISTS (SELECT 1 FROM Orders)\nBEGIN\n    DELETE FROM Orders;\n    PRINT 'Orders table data has been cleared.';\nEND\nELSE\nBEGIN\n    PRINT 'No data found in Orders table.';\nEND"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
