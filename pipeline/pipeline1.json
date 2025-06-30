@@ -165,18 +165,81 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*",
+							"wildcardFileName": {
+								"value": "@activity('brows_broze_blob_order').output.childItems[0].name",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
 							"type": "DelimitedTextReadSettings"
 						}
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Order_ID"
+								},
+								"sink": {
+									"name": "order_id",
+									"type": "int",
+									"precision": 10
+								}
+							},
+							{
+								"source": {
+									"name": "Customer"
+								},
+								"sink": {
+									"name": "customer",
+									"type": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Amount"
+								},
+								"sink": {
+									"name": "amount",
+									"type": "decimal",
+									"scale": 2,
+									"precision": 10
+								}
+							},
+							{
+								"source": {
+									"name": "Order_Date"
+								},
+								"sink": {
+									"name": "order_date",
+									"type": "date"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
 						"referenceName": "dS_blob_bronze",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "dS_sql_order",
 						"type": "DatasetReference"
 					}
 				]
