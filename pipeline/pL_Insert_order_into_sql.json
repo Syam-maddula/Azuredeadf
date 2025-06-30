@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "pL_Insert_order_into_sql",
 	"properties": {
 		"activities": [
 			{
