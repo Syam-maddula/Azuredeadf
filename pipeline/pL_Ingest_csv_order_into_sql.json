@@ -1,5 +1,5 @@
 {
-	"name": "pL_Insert_order_into_sql",
+	"name": "pL_Ingest_csv_order_into_sql",
 	"properties": {
 		"activities": [
 			{
@@ -26,6 +26,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureFileStorageReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -145,7 +146,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "brows_broze_blob_order",
+						"activity": "Script1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -275,11 +276,45 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
 						"type": "DelimitedTextReadSettings"
 					}
+				}
+			},
+			{
+				"name": "Script1",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "brows_broze_blob_order",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "IF EXISTS (SELECT 1 FROM [dbo].[Orders]\r\nBEGIN\r\n    DELETE FROM [dbo].[Orders];\r\n    PRINT 'Orders table data has been cleared.';\r\nEND\r\nELSE\r\nBEGIN\r\n    PRINT 'No data found in Orders table.';\r\nEND"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
 				}
 			}
 		],
