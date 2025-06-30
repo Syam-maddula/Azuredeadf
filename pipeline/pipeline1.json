@@ -86,7 +86,7 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "order_ID"
+									"name": "order_id"
 								},
 								"sink": {
 									"name": "Order_ID"
