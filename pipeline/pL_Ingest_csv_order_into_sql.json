@@ -310,8 +310,30 @@
 				"typeProperties": {
 					"scripts": [
 						{
+							"parameters": [
+								{
+									"name": "order_id",
+									"type": "Int16",
+									"value": ""
+								},
+								{
+									"name": "customer",
+									"type": "String",
+									"value": ""
+								},
+								{
+									"name": "amount",
+									"type": "Double",
+									"value": ""
+								},
+								{
+									"name": "order_date",
+									"type": "Datetime",
+									"value": ""
+								}
+							],
 							"type": "NonQuery",
-							"text": "IF EXISTS (SELECT 1 FROM Orders)\nBEGIN\n    DELETE FROM Orders;\n    PRINT 'Orders table data has been cleared.';\nEND\nELSE\nBEGIN\n    PRINT 'No data found in Orders table.';\nEND"
+							"text": "-- 1. Create the table if it doesn't exist\nIF NOT EXISTS (\n    SELECT * FROM INFORMATION_SCHEMA.TABLES \n    WHERE TABLE_NAME = 'orders' AND TABLE_SCHEMA = 'dbo'\n)\nBEGIN\n    CREATE TABLE dbo.orders (\n        order_id INT PRIMARY KEY,\n        customer NVARCHAR(100) NOT NULL,\n        amount DECIMAL(10, 2) NOT NULL,\n        order_date DATETIME NOT NULL\n    );\nEND\n\n-- 2. Delete all data if the table has records\nIF EXISTS (SELECT 1 FROM dbo.orders)\nBEGIN\n    DELETE FROM dbo.orders;\nEND\n\n-- 3. Drop the insert procedure if it exists\nIF OBJECT_ID('dbo.InsertOrder', 'P') IS NOT NULL\nBEGIN\n    DROP PROCEDURE dbo.InsertOrder;\nEND\nGO\n\n-- 4. Create insert procedure\nCREATE PROCEDURE dbo.InsertOrder\n    @order_id INT,\n    @customer NVARCHAR(100),\n    @amount DECIMAL(10,2),\n    @order_date DATETIME\nAS\nBEGIN\n    INSERT INTO dbo.orders (order_id, customer, amount, order_date)\n    VALUES (@order_id, @customer, @amount, @order_date);\nEND\nGO\n"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
