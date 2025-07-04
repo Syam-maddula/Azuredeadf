@@ -3,7 +3,7 @@
 	"location": "West US",
 	"identity": {
 		"type": "SystemAssigned",
-		"principalId": "971d0938-c244-4c60-936d-09e27e0218c0",
+		"principalId": "298a5022-56a2-4285-bc8e-6649576de25d",
 		"tenantId": "84f1e4ea-8554-43e1-8709-f0b8589ea118"
 	}
 }
