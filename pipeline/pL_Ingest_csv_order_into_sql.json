@@ -314,22 +314,22 @@
 								{
 									"name": "order_id",
 									"type": "Int32",
-									"value": ""
+									"value": null
 								},
 								{
 									"name": "customer",
 									"type": "String",
-									"value": ""
+									"value": null
 								},
 								{
 									"name": "amount",
 									"type": "Double",
-									"value": ""
+									"value": null
 								},
 								{
 									"name": "order_date",
 									"type": "Datetime",
-									"value": ""
+									"value": null
 								}
 							],
 							"type": "NonQuery",
