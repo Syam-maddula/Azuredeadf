@@ -1,7 +1,7 @@
 {
 	"name": "sqlMPE",
 	"properties": {
-		"privateLinkResourceId": "/subscriptions/2213e8b1-dbc7-4d54-8aff-b5e315df5e5b/resourceGroups/1-d9741003-playground-sandbox/providers/Microsoft.Sql/servers/mySqlServer1981234",
+		"privateLinkResourceId": "/subscriptions/9734ed68-621d-47ed-babd-269110dbacb1/resourceGroups/1-3896ad9b-playground-sandbox/providers/Microsoft.Sql/servers/mySqlServer1981234",
 		"groupId": "sqlServer",
 		"fqdns": [
 			"mysqlserver1981234.database.windows.net"
